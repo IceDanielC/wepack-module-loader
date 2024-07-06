@@ -1,0 +1,19 @@
+{
+  "name": "mywebpackdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./bundle.js",
+    "start": "node ./dist/bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/parser": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/traverse": "^7.23.9"
+  }
+}
