@@ -2,10 +2,10 @@
   "name": "mywebpackdemo",
   "version": "1.0.0",
   "description": "",
-  "main": "bundle.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./bundle.js",
+    "build": "node ./main.js",
     "start": "node ./dist/bundle.js"
   },
   "author": "",
