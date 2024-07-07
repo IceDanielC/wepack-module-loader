@@ -74,11 +74,12 @@ const parseModules = (file) => {
 
 /**
  * 打包入口函数
- * @param {*} file 入口文件路径
+ * @param {*} enrty 入口文件路径
  * @returns 模块加载IIFE
  */
-const bundle = (file) => {
-    const depsGraph = JSON.stringify(parseModules(file))
+const bundle = (enrty) => {
+    const depsGraph = JSON.stringify(parseModules(enrty))
+
     return `(function (graph) {
         function require(file) {
             function absRequire(relPath) {
@@ -95,12 +96,12 @@ const bundle = (file) => {
             })(absRequire,exports,graph[file].code)
             return exports
         }
-        require('${file}')
+        require('${enrty}')
     })(${depsGraph})`
-
 }
 
 const content = bundle('./src/index.js')
+
 if (fs.existsSync('./dist')) {
     fs.rmSync('./dist', { recursive: true });
 }
