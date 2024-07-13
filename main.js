@@ -36,7 +36,7 @@ const getModuleInfo = (file) => {
             }
         }
     })
-    // 使用babel，将es6转为es5
+    // 使用babel，将es6转为es5，Promise等api也会被转化
     const { code } = babel.transformFromAst(ast, null, {
         presets: ["@babel/preset-env"]
     })
