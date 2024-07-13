@@ -13,11 +13,11 @@ const getModuleInfo = (file) => {
     const body = fs.readFileSync(file, 'utf-8')
     // 使用babel将当前模块转化为AST
     const ast = parser.parse(body, {
-        // 解析es模块
+        // 同时解析es模块和cjs模块
         sourceType: 'unambiguous'
     })
     // 遍历ast
-    const deps = {} // 依赖文件的相对路径:绝对路径
+    const deps = {} // 依赖文件的 相对路径(引用路径):绝对路径
     traverse(ast, {
         // 分析import
         ImportDeclaration({ node }) {
@@ -28,7 +28,7 @@ const getModuleInfo = (file) => {
         },
         // 分析require
         CallExpression({ node }) {
-            if (node.callee.name ==='require') {
+            if (node.callee.name === 'require') {
                 const dirname = path.dirname(file)
                 let postfix = file.slice(file.lastIndexOf('.'), file.length)
                 const abspath = './' + path.join(dirname, node.arguments[0].value + postfix)
