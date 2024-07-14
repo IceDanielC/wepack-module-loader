@@ -86,9 +86,9 @@ const bundle = (enrty) => {
      * 浏览器不支持require，需要自己实现require的功能，在浏览器执行
      */
     return `(function (graph) {
-        function require(file) {
+        function __webpack_require__(file) {
             function absRequire(relPath) {
-                return require(graph[file].deps[relPath])
+                return __webpack_require__(graph[file].deps[relPath])
             }
             var exports={};
             (function (require,exports,code) {
@@ -96,7 +96,7 @@ const bundle = (enrty) => {
             })(absRequire,exports,graph[file].code)
             return exports
         }
-        require('${enrty}')
+        __webpack_require__('${enrty}')
     })(${depsGraph})`
 }
 
