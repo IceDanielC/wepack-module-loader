@@ -13,6 +13,5 @@
 - 构建测试bundle
 `pnpm run build`
 
-- 运行打包后bundle
-`pnpm run start`
+- 测试直接在本地运行index.html即可
 
