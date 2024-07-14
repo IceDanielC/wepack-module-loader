@@ -1,7 +1,7 @@
 import add from "./utils/add";
 import { minus } from "./utils/minus";
 import { delay } from "./lib/useAsync";
-const { complexCalc } = require("./lib/complex");
+const { complexCalc } = require("./lib/complex").default;
 
 async function main() {
   const sum = add(1, 2);

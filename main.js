@@ -80,6 +80,11 @@ const parseModules = (file) => {
 const bundle = (enrty) => {
     const depsGraph = JSON.stringify(parseModules(enrty))
 
+    /** 
+     * 这里其实是自己实现了require方法
+     * 核心就是通过eval来执行模块的code（通过模块的绝对路径），返回模块的exports导出内容
+     * 浏览器不支持require，需要自己实现require的功能，在浏览器执行
+     */
     return `(function (graph) {
         function require(file) {
             function absRequire(relPath) {
@@ -88,11 +93,6 @@ const bundle = (enrty) => {
             var exports={};
             (function (require,exports,code) {
                 eval(code)
-                for (var key in module.exports) {
-                    if (module.exports.hasOwnProperty(key)) {
-                        exports[key] = module.exports[key];
-                    }
-                }
             })(absRequire,exports,graph[file].code)
             return exports
         }
